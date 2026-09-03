@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A crisp, editorial product design system inspired by Elesia." />
+  <title>Haketi — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6961ff;
+      --primary-hover: #564dff;
+      --primary-soft: #efeeff;
+      --ink: #140709;
+      --ink-70: rgba(20, 7, 9, .70);
+      --ink-50: rgba(20, 7, 9, .50);
+      --line: #dcdfeb;
+      --canvas: #f0f2fe;
+      --surface: #fff;
+      --mint: #bafaa2;
+      --gold: #ffce7a;
+      --pink: #fcacf5;
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 32px;
+      --shadow: 0 18px 50px rgba(54, 49, 148, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--canvas); font-family: Inter, Arial, sans-serif; font-size: 15px; letter-spacing: -.35px; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1440px; margin: 0 auto; padding: 0 32px 80px; }
+    .nav { height: 88px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; }
+    .brand-logo { width: 130px; height: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { color: var(--ink-70); text-decoration: none; font-weight: 500; }
+    .nav-links a:hover { color: var(--primary); }
+    .button { border: 1px solid transparent; border-radius: 999px; padding: 13px 20px; min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; color: white; background: var(--ink); transition: transform .18s ease, background .18s ease, box-shadow .18s ease; }
+    .button:hover { transform: translateY(-2px) scale(1.015); box-shadow: 0 10px 22px rgba(20,7,9,.15); }
+    .button.primary { background: var(--primary); }
+    .button.primary:hover { background: var(--primary-hover); box-shadow: 0 10px 22px rgba(105,97,255,.28); }
+    .button.secondary { color: var(--ink); background: white; border-color: var(--line); }
+    .button.ghost { color: var(--primary); background: transparent; }
+    .hero { display: grid; grid-template-columns: 1.1fr .9fr; min-height: 480px; overflow: hidden; background: var(--surface); border-radius: var(--radius-lg); }
+    .hero-copy { padding: 74px clamp(36px, 6vw, 88px); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-70); font-size: 12px; font-weight: 600; letter-spacing: -.2px; }
+    .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3, .display, .heading { font-family: Poppins, Inter, Arial, sans-serif; font-weight: 700; }
+    h1 { margin: 20px 0; max-width: 670px; font-size: clamp(46px, 5.4vw, 76px); line-height: 1.04; letter-spacing: -4px; }
+    .hero-copy p { max-width: 490px; color: var(--ink-70); font-size: 18px; line-height: 1.45; }
+    .hero-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+    .hero-art { min-height: 420px; padding: 34px; position: relative; overflow: hidden; background: linear-gradient(150deg, #e7e6ff 0%, #f6f5ff 44%, #ccf9b4 100%); }
+    .orb { position: absolute; border-radius: 50%; filter: blur(1px); }
+    .orb.one { width: 310px; height: 310px; right: -45px; top: -50px; background: var(--primary); opacity: .92; }
+    .orb.two { width: 220px; height: 220px; left: -45px; bottom: -65px; background: var(--pink); }
+    .product-card { position: absolute; inset: 84px 52px 54px 70px; padding: 20px; background: rgba(255,255,255,.88); border: 1px solid rgba(255,255,255,.7); border-radius: 22px; box-shadow: 0 24px 70px rgba(49,42,135,.20); backdrop-filter: blur(18px); }
+    .mini-top { display:flex; justify-content:space-between; align-items:center; color:var(--ink-50); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.4px; }
+    .avatar-stack { display:flex; margin-top:23px; }
+    .avatar { display:grid; place-items:center; width:29px; height:29px; margin-right:-6px; border:2px solid white; border-radius:50%; background:var(--gold); font-size:10px; font-weight:700; }
+    .avatar:nth-child(2) { background:var(--mint); }.avatar:nth-child(3) { background:var(--pink); }
+    .chart { height: 100px; margin-top: 25px; display:flex; align-items:flex-end; gap:9px; }
+    .chart span { width: 18%; border-radius: 7px 7px 2px 2px; background: #d9d7ff; }.chart span:nth-child(1){height:37%}.chart span:nth-child(2){height:58%}.chart span:nth-child(3){height:47%}.chart span:nth-child(4){height:86%;background:var(--primary)}.chart span:nth-child(5){height:67%}
+    .section { margin-top: 72px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 22px; }
+    .section-heading h2 { margin: 0; font-size: clamp(32px, 3.2vw, 48px); line-height: 1.1; letter-spacing: -2.4px; }
+    .section-heading p { margin: 0; max-width: 390px; color: var(--ink-70); line-height: 1.45; }
+    .panel { padding: 28px; background: var(--surface); border: 1px solid rgba(220,223,235,.7); border-radius: var(--radius-md); }
+    .token-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .color-token { min-height: 164px; padding: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; text-align: left; transition: transform .18s ease, box-shadow .18s ease; }
+    .color-token:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .swatch { width: 100%; height: 98px; margin-bottom: 13px; border-radius: 11px; }
+    .color-token strong, .color-token span { display:block; }.color-token strong { font-size:13px; }.color-token span { margin-top:4px; color:var(--ink-50); font-size:12px; }
+    .type-grid { display:grid; grid-template-columns: 1.15fr .85fr; gap:16px; }
+    .type-sample { padding: 30px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-md); }
+    .type-sample small, .component-label { display:block; margin-bottom:17px; color:var(--ink-50); font-size:11px; font-weight:600; letter-spacing:.65px; text-transform:uppercase; }
+    .display { margin:0; font-size:clamp(42px, 5vw, 66px); line-height:1.05; letter-spacing:-3.5px; }.heading { margin:0; font-size:34px; line-height:1.1; letter-spacing:-1.7px; }.body-lg { margin:0; color:var(--ink-70); font-size:18px; line-height:1.45; }
+    .type-list { display:flex; flex-direction:column; justify-content:space-around; }.type-row { display:flex; justify-content:space-between; gap:16px; padding:13px 0; border-bottom:1px solid var(--line); }.type-row:last-child{border:0}.type-row span{color:var(--ink-50); font-size:12px}.type-row strong{font-size:14px}
+    .components { display:grid; grid-template-columns: 1.2fr .8fr; gap:16px; }.component-stack { display:grid; gap:16px; }.button-set, .input-row, .toggle-row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .input { flex:1; min-width:180px; height:48px; padding:0 15px; border:1px solid var(--line); border-radius:12px; outline:none; background:#fff; color:var(--ink); }.input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(105,97,255,.13)}
+    .badge { display:inline-flex; align-items:center; gap:6px; padding:6px 9px; border-radius:999px; background:var(--primary-soft); color:var(--primary); font-size:12px; font-weight:600; }.badge.green{background:#effee7;color:#3d8619}.badge.dark{background:var(--ink);color:#fff}
+    .switch { width:44px; height:26px; padding:3px; border:0; border-radius:999px; background:#dfe1ef; transition:.2s; }.switch span { display:block; width:20px; height:20px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.25); transition:.2s; }.switch.active{background:var(--primary)}.switch.active span{transform:translateX(18px)}
+    .feature { display:flex; align-items:flex-start; gap:13px; padding:18px 0; border-bottom:1px solid var(--line); }.feature:last-child{padding-bottom:0;border-bottom:0}.feature-icon { display:grid; place-items:center; flex:0 0 37px; height:37px; border-radius:11px; background:var(--primary-soft); color:var(--primary); font-size:19px; }.feature strong{display:block;margin-bottom:4px}.feature p{margin:0;color:var(--ink-70);font-size:13px;line-height:1.4}
+    .notice { position:fixed; right:24px; bottom:24px; z-index:4; padding:12px 16px; border-radius:12px; background:var(--ink); color:#fff; font-size:13px; transform:translateY(90px); opacity:0; transition:.25s ease; }.notice.show{transform:translateY(0);opacity:1}
+    footer { margin-top:70px; display:flex; justify-content:space-between; padding-top:22px; border-top:1px solid rgba(20,7,9,.15); color:var(--ink-50); font-size:12px; }
+    @media (max-width: 860px) { .hero, .type-grid, .components { grid-template-columns:1fr; }.hero-art{min-height:370px}.token-grid{grid-template-columns:repeat(3,1fr)}.nav-links{display:none}.section-heading{align-items:start;flex-direction:column}.product-card{inset:70px 15% 36px 15%;} }
+    @media (max-width: 540px) { .shell{padding:0 16px 50px}.nav{height:70px}.hero-copy{padding:48px 28px}.hero-art{min-height:315px}.token-grid{grid-template-columns:repeat(2,1fr)}h1{letter-spacing:-2.5px}.panel{padding:20px}.section{margin-top:52px}.product-card{inset:55px 24px 25px}.nav .button{padding:10px 14px;min-height:39px;font-size:13px}footer{gap:10px;flex-direction:column} }
+  </style>
+<link rel="stylesheet" href="system-nav.css"></head>
+<body>
+  <main class="shell">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Haketi home"><img class="brand-logo" src="haketi.svg" alt="Haketi"></a>
+      <div class="nav-links"><a href="#foundations">Foundations</a><a href="#components">Components</a><a href="#guidance">Guidance</a></div>
+      <button class="button primary" onclick="notify('Library link copied to clipboard')">Get the kit <span>↗</span></button>
+    </nav>
+
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <span class="eyebrow"><i></i> Version 1.0</span>
+        <h1>A bright, clear system for digital products.</h1>
+        <p>Echo turns product decisions into a focused visual language — deliberate typography, confident color, and components made to move.</p>
+        <div class="hero-actions"><button class="button primary" onclick="document.querySelector('#components').scrollIntoView()">Explore components</button><button class="button secondary" onclick="notify('Tokens are ready to copy')">View tokens</button></div>
+      </div>
+      <div class="hero-art" aria-label="Abstract product dashboard illustration">
+        <span class="orb one"></span><span class="orb two"></span>
+        <div class="product-card"><div class="mini-top"><span>Project velocity</span><span>•••</span></div><div class="avatar-stack"><span class="avatar">JD</span><span class="avatar">MN</span><span class="avatar">+3</span></div><div class="chart"><span></span><span></span><span></span><span></span><span></span></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="foundations">
+      <div class="section-heading"><h2>Color has a job to do.</h2><p>A cool, light canvas lets important decisions stand out. The primary accent is reserved for focus, action, and progress.</p></div>
+      <div class="token-grid">
+        <button class="color-token" onclick="copyColor('#6961ff')"><div class="swatch" style="background:#6961ff"></div><strong>Primary</strong><span>#6961FF</span></button>
+        <button class="color-token" onclick="copyColor('#140709')"><div class="swatch" style="background:#140709"></div><strong>Ink</strong><span>#140709</span></button>
+        <button class="color-token" onclick="copyColor('#f0f2fe')"><div class="swatch" style="background:#f0f2fe"></div><strong>Canvas</strong><span>#F0F2FE</span></button>
+        <button class="color-token" onclick="copyColor('#bafaa2')"><div class="swatch" style="background:#bafaa2"></div><strong>Mint</strong><span>#BAFAA2</span></button>
+        <button class="color-token" onclick="copyColor('#ffce7a')"><div class="swatch" style="background:#ffce7a"></div><strong>Golden</strong><span>#FFCE7A</span></button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><h2>Type, with intention.</h2><p>Inter keeps the system direct and highly legible. Tight headline tracking creates an editorial, modern voice.</p></div>
+      <div class="type-grid"><div class="type-sample"><small>Display / 64 / Semibold</small><p class="display">Make every detail count.</p><hr style="border:0;border-top:1px solid var(--line);margin:28px 0"><small>Body / 18 / Medium</small><p class="body-lg">Use a calm, open rhythm for product descriptions, supporting context, and long-form content.</p></div><div class="type-sample type-list"><div class="type-row"><span>Heading 01</span><strong style="font-size:26px;letter-spacing:-1px">Clear direction</strong></div><div class="type-row"><span>Heading 02</span><strong style="font-size:20px">Designed to adapt</strong></div><div class="type-row"><span>Body / Regular</span><strong style="font-weight:500">Concise, useful copy</strong></div><div class="type-row"><span>Label / Semibold</span><strong style="font-size:12px;text-transform:uppercase;letter-spacing:.5px">Build with purpose</strong></div></div></div>
+    </section>
+
+    <section class="section" id="components">
+      <div class="section-heading"><h2>Components that feel alive.</h2><p>Rounded geometry and small, intentional motion give interactions a friendly, responsive edge.</p></div>
+      <div class="components">
+        <div class="component-stack"><div class="panel"><span class="component-label">Buttons</span><div class="button-set"><button class="button primary" onclick="notify('Primary action triggered')">Continue <span>→</span></button><button class="button secondary">Secondary</button><button class="button ghost">Text action →</button></div></div><div class="panel"><span class="component-label">Inputs & status</span><div class="input-row"><input class="input" aria-label="Email address" placeholder="you@company.com"><button class="button primary">Subscribe</button></div><div class="button-set" style="margin-top:17px"><span class="badge">● In progress</span><span class="badge green">● Approved</span><span class="badge dark">New</span></div></div></div>
+        <div class="panel" id="guidance"><span class="component-label">Interaction principles</span><div class="feature"><div class="feature-icon">↗</div><div><strong>Give actions a clear home</strong><p>One primary action per moment. Let secondary choices stay visually quiet.</p></div></div><div class="feature"><div class="feature-icon">◌</div><div><strong>Use soft contrast</strong><p>Cool gray surfaces, hairline borders, and white space create hierarchy without noise.</p></div></div><div class="feature"><div class="feature-icon">✦</div><div><strong>Keep motion brief</strong><p>Use 180ms ease-out transitions and a small lift to acknowledge interaction.</p></div></div><div class="toggle-row" style="margin-top:20px"><button class="switch active" aria-label="Toggle updates" onclick="this.classList.toggle('active')"><span></span></button><span style="font-size:13px;font-weight:500">Product updates enabled</span></div></div>
+      </div>
+    </section>
+    <footer><span>Haketi design system</span><span>Built for clarity and momentum.</span></footer>
+  </main>
+  <div class="notice" id="notice" role="status"></div>
+  <script>
+    let timeout;
+    function notify(message) { const n = document.getElementById('notice'); n.textContent = message; n.classList.add('show'); clearTimeout(timeout); timeout = setTimeout(() => n.classList.remove('show'), 2200); }
+    function copyColor(color) { navigator.clipboard?.writeText(color); notify(color + ' copied'); }
+  </script>
+<script src="system-nav.js"></script></body>
+</html>
